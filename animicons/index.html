@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	<title>Animated Icons</title>
+	<style>
+		#chain{
+			font-size:50px;
+		}
+	</style>
+</head>
+<body>
+	<div id="chain" class="fas">
+		
+	</div>
+	<script>
+		function breakChain(){
+			let chain = document.getElementById("chain");
+			chain.innerHTML = "&#xf0c1;";
+
+			
+			setTimeout(function(){chain.innerHTML = "&#xf127;";}, 1000);
+		}
+		breakChain();
+		setInterval(breakChain, 2000);
+	</script>
+</body>
+</html>
