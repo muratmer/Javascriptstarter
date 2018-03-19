@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Date Facts</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<style>
+	#dateFact{
+		display:  none;
+	}
+</style>
+</head>
+<body>
+	<div class="container">
+		<div class="col-md-6 mx-auto">
+			<div class="card bg-primary text-white">
+				<div class="card-header">
+					<h2>Date Facts</h2>
+				</div>
+				<div class="card-body">
+					<h3 class="card-text">
+						Please enter a date and select a month
+					</h3>
+				<p class="card-text">
+			      <label for="input">Enter day of the month</label>
+			      <input type="text" class="" id="dayInput" placeholder="Day of month" />
+    			</p>
+
+				<p class="card-text">
+			      <label for="select">Month</label>
+			      <select id="monthInput">
+			       			        
+			          <option value="1">Jan</option>
+			          <option value="2">Feb</option>
+			          <option value="3">March</option>
+			          <option value="4">April</option>
+			          <option value="5">May</option>
+			          <option value="6">June</option>
+			           <option value="7">July</option>
+			          <option value="8">August</option>
+			          <option value="9">September</option>
+			          <option value="10">October</option>
+			          <option value="11">November</option>
+			          <option value="12">December</option>
+			        
+			      </select>
+
+   				</p>
+   				<button class="btn btn-danger" id="showFact">Show fact</button>
+   				<div class="card-text" id="dateFact">
+   				
+   					<h4 class="card-header">Facts about the date you choose:</h3>
+   					<p class="card-text" id="factText"></p>
+   				</div>
+   				  			
+   				</div>
+
+			</div>
+
+		</div>
+	</div>
+	
+
+<script>
+	let dayInput = document.querySelector("#dayInput");
+	let monthInput =document.querySelector("#monthInput");
+	let dateFact = document.querySelector("#dateFact");
+	let showFact = document.querySelector("#showFact");
+
+	showFact.addEventListener("click", getFactAjax);
+	function getFactAjax() {
+		let day = dayInput.value;
+		let month = monthInput.value;
+		let xhr = new XMLHttpRequest();
+			xhr.open("GET", "http://numbersapi.com/" + month + "/" + day + "/date");
+			xhr.onload = function(){
+				if(this.status ==200 && day!=""  && month!=""){
+					
+					dateFact.style.display="block";
+					factText.innerText =this.responseText;}
+				}
+				xhr.send();
+		
+	}
+
+
+</script>
+
+</body>
+</html>
