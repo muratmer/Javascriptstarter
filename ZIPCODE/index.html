@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Zipcode Finder</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+</head>
+<body>
+	<section class="jumbotron bg-dark">
+		<h1 class="text-white">US Location Info</h1>
+		<h5 class="text-white">Enter a zipcode to get the location info</h5>
+		<form id="zipForm"  class="form-inline my-2">
+			
+			<input type="number" class="form-control form-control-md" id="zipInput" placeholder="Enter zip code...">
+			<button type="submit" class="btn btn-success text-white ml-2" aria-label="Left Align">
+  <span class="fa fa-map-pin"></span>  Show location
+</button>
+			
+		</form>
+	</section>
+	<div class="container">
+		<div class='alert-danger p-10' id="output">
+			
+		</div>
+	</div>
+	<script>
+		//Listen for submit 
+		document.querySelector("#zipForm").addEventListener("submit", getLocationInfo);
+		function getLocationInfo(e) {
+			//Get zip value from input
+			const zip = document.getElementById("zipInput").value;
+			//make a request
+			fetch('http://api.zippopotam.us/US/${zip}')
+			.then(response => {
+				if(response.status!=200){
+					document.querySelector("#output").innerHTML = 
+					"<p>Invalid Zipcode please try again</p>";
+					throw Error(response.statusText);}
+					else{
+						return response.json();
+					}
+				})
+
+			.then(data=>{
+					//Show location info
+					let output = "";
+					data.places.forEach(
+						place=>{
+							output+="<p>Location  :  ${place['place name']}</p>";
+						});
+					document.querySelector("#output").innerHTML = output;
+			}).catch(err => console.log(err));
+			e.preventDefault();
+		}
+	</script>
+</body>
+</html>
