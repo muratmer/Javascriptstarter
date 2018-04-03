@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Random Quote Machine</title>
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<script defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js" integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl" crossorigin="anonymous"></script>
+
+
+<sytle>
+
+</sytle>	
+
+<body>
+	<div class="container">
+		<div class="col-md-6 mx-auto mt-5">
+			<div class="jumbotron">
+			<div id="quoteShow" class="">
+				
+			</div>
+			<br>
+			<em><div id="quotePerson">
+				
+			</div></em>
+			<br>
+			<div id="share">
+
+				<button id="twitterShare" class="btn">
+					<i class="fab fa-twitter"></i></a>
+				</button>
+				<button id="tumblrShare" class="btn">
+					<a href="href=https://www.tumblr.com/share"><i class="fab fa-tumblr"></i></a>
+				</button>			
+
+				
+			</div>
+			<br>
+			<button id="changeQuote" class="btn float-right">Change quote</button>
+		</div>
+		</div>
+	</div>
+	
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script>
+	var quotes = [
+      	{name:"Rick Warren",quote:"The Bible tells us that Jesus Christ came to do three things. He came to have my past forgiven, you get a purpose for living and a home in Heaven."},
+      	{name:"Winston Churcill",quote:"We make a living by what we get, but we make a life by what we give."},
+      	{name:"Gena Lee Nolin" ,quote: "My children are the reason I laugh, smile and want to get up every morning."},
+      	{name:"Bo Jackson",quote:"Set your goals high, and don't stop till you get there."},
+      	{name:"Angelique Gerber",quote:"Don't make things too complicated. Try to relax, enjoy every moment, get used to everything."},
+      	{name:"Mark Twain",quote:"Get your facts first, then you can distort them as you please."},
+      	{name:"Walt Disney",quote:"The way to get started is to quit talking and begin doing."},
+      	{name:"Eva Mendes",quote:"I don't usually lose my temper, but if I get angry, it's true - I'm scary."},
+      	{name:"jim Rohn",quote:"Time is more value than money. You can get more money, but you cannot get more time."},
+      	{name:"Wayne Huizenga",quote:"Some people dream of success, while other people get up every morning and make it happen."}
+      ] ;
+
+
+      var quoteShow = document.getElementById("quoteShow");
+      var quotePerson = document.getElementById("quotePerson");
+//Set first quotes to display at page opening
+      var firstQuoteNum = random(9);
+		
+	$(document).ready(function(){quoteShow.innerText = quotes[firstQuoteNum].quote;
+      	quotePerson.innerText = "-" + quotes[firstQuoteNum].name;
+twitterShare.onclick = function(e) {
+  e.preventDefault();
+  var twitterWindow = window.open('https://twitter.com/share?text=' +quotes[quoteNum].quote + "-" + quotes[quoteNum].name , 'twitter-popup', 'height=350,width=600');
+  if(twitterWindow.focus) { twitterWindow.focus(); }
+    return false;}});
+
+//Set first background color of body and buttons
+var twitterShare = document.getElementById("twitterShare");
+var tumblrShare = document.getElementById("tumblrShare");
+var btn = document.getElementById('changeQuote');
+var rndColfirst = 'rgb(' + random(255) + ',' + random(255) + ',' + random(255) + ')';
+        document.body.style.backgroundColor = rndColfirst;
+        twitterShare.style.backgroundColor=rndColfirst;
+        tumblrShare.style.backgroundColor=rndColfirst;
+         btn.style.backgroundColor=rndColfirst;
+
+
+
+
+   //Get a random number   
+      function random(number) {
+        return Math.floor(Math.random()*number);
+      }
+
+//Change background colors of body and buttons
+      function bgChange() {
+        var rndCol = 'rgb(' + random(255) + ',' + random(255) + ',' + random(255) + ')';
+        document.body.style.backgroundColor = rndCol;
+       twitterShare.style.backgroundColor=rndCol;
+        tumblrShare.style.backgroundColor=rndCol;
+         btn.style.backgroundColor=rndCol;
+       displayQuote();
+
+
+      }
+      btn.addEventListener('click', bgChange);
+
+//Show a random quote      
+   function displayQuote(){
+        var quoteNum = random(9);
+      	quoteShow.innerText = quotes[quoteNum].quote;
+      	quotePerson.innerText = "-" + quotes[quoteNum].name;
+
+      	twitterShare.onclick = function(e) {
+  e.preventDefault();
+  var twitterWindow = window.open('https://twitter.com/share?text=' +quotes[quoteNum].quote + "-" + quotes[quoteNum].name , 'twitter-popup', 'height=350,width=600');
+  if(twitterWindow.focus) { twitterWindow.focus(); }
+    return false;
+  }
+
+
+      };
+
+          
+
+
+  
+    </script>
+  
+</head>	
+</body>
+</html>
