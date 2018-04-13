@@ -11,7 +11,7 @@ navigator.geolocation.getCurrentPosition(function(position) {
    	.then(function(data){
  		
 
- 		city.innerText = data.name;
+ 		city.innerText = data.name + ;
  		degree.innerText = data.main.temp + " C";
  		degree.addEventListener("click", changeDegree)
  		function changeDegree(){
